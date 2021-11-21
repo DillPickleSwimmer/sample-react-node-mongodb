@@ -1,0 +1,48 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "babel src/ -d lib/",
+    "init": "npm run install && npm run install:db",
+    "install:all": "rm -rf package-lock.json && rm -rf node_modules && npm install",
+    "install:clean": "rm -rf package-lock.json && rm -rf node_modules && npm install",
+    "install:db": "brew tap mongodb/brew && sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/sbin && brew install mongodb-community@5.0",
+    "localdb:copyProd": "mongodump --uri \"$(grep MONGODB_URI .env.production | cut -d '=' -f2)\" --out ./tempDB && mongorestore --port $(grep MONGODB_PORT_LOCAL .env | cut -d '=' -f2) ./tempDB",
+    "localdb:start": "brew services start mongodb-community@5.0",
+    "localdb:stop": "brew services stop mongodb-community@5.0",
+    "start": "NODE_ENV=production node lib/index.js",
+    "start:dev": "NODE_ENV=development node src/index.js",
+    "start:prod-local": "NODE_ENV=production node src/index.js",
+    "test": "NODE_ENV=test jest",
+    "test:watchman": "sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/sbin && brew unlink watchman && brew link --overwrite watchman && NODE_ENV=test jest"
+  },
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "homepage": "https://github.com/DillPickleSwimmer/Retrievers#readme",
+  "dependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-flow": "^7.16.0",
+    "dotenv": "^10.0.0",
+    "dotenv-flow": "^3.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.165.0",
+    "jest": "^27.3.1",
+    "mongod": "^2.0.0",
+    "mongodb-memory-server": "^8.0.2",
+    "supertest": "^6.1.6"
+  }
+}

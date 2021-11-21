@@ -1,0 +1,46 @@
+{
+  "name": "sample-react-node-mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "npm run build:server && npm run build:client",
+    "build:client": "npm --prefix client run build",
+    "build:server": "npm --prefix server run build",
+    "flow": "flow",
+    "flow:check": "flow check ./src/",
+    "preinstall": "npm run install:clean && npm --prefix client run install:clean && npm --prefix server run install:clean",
+    "install:clean": "rm -rf package-lock.json && rm -rf node_modules",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "start": "npm run start:server",
+    "start:client": "npm --prefix client run start",
+    "start:server": "npm --prefix server run start",
+    "test": "NODE_ENV=test npm --prefix client run test && NODE_ENV=test npm --prefix server run test",
+    "test:watchman": "NODE_ENV=test npm --prefix client run test:watchman && NODE_ENV=test npm --prefix server run test:watchman"
+  },
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DillPickleSwimmer/sample-react-node-mongodb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DillPickleSwimmer/sample-react-node-mongodb/issues"
+  },
+  "homepage": "https://github.com/DillPickleSwimmer/sample-react-node-mongodb#readme",
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-flowtype": "^7.0.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "flow-bin": "^0.165.0",
+    "prettier": "^2.4.1"
+  }
+}

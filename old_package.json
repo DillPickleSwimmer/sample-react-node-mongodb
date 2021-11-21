@@ -1,0 +1,79 @@
+{
+  "name": "retrievers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:node && npm run build:client",
+    "build:client": "babel client/src/ -d lib/ && cd client && npm run build",
+    "build:node": "babel server/src/ -d lib/",
+    "dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "eject": "react-scripts eject",
+    "flow": "flow",
+    "flow:check": "flow check ./src/",
+    "init": "npm run install && npm run install:db",
+    "install:all": "rm -rf package-lock.json && rm -rf node_modules && npm install && cd client && rm -rf package-lock.json && rm -rf node_modules && npm install",
+    "install:db": "brew tap mongodb/brew && sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/sbin && brew install mongodb-community@5.0",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "start:client": "cd client && npm run start",
+    "start:localdb": "brew services start mongodb-community@5.0",
+    "start:server": "node server/src/index.js",
+    "stop:localdb": "brew services stop mongodb-community@5.0",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:client": "cd client && npm run test"
+  },
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.1.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DillPickleSwimmer/Retrievers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DillPickleSwimmer/Retrievers/issues"
+  },
+  "homepage": "https://github.com/DillPickleSwimmer/Retrievers#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "concurrently": "^6.4.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-flowtype": "^7.0.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "flow-bin": "^0.165.0",
+    "mongod": "^2.0.0",
+    "prettier": "^2.4.1"
+  }
+}
