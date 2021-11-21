@@ -1,6 +1,10 @@
-# Retrievers
+# Sample Project
+Can build up a pretty advanced project on top of this
 
 ## Installation:
+Make a mongodb cluster: https://docs.atlas.mongodb.com/getting-started/
+Set up heroku: https://www.freecodecamp.org/news/deploy-a-react-node-app-to/
+
 On MacOS
 1. `npm init`
 2. Copy the server/sample.env files and follow the instructions within them
@@ -31,7 +35,6 @@ Server:
 - MongoDB - database
 - Mongoose - mongodb object modeling for js
 - Mongod - local mongodb for testing rather than production
-- Bcrypt* - encryption library for node
 Shared:
 - Flow - type checking
 - Jest - testing
